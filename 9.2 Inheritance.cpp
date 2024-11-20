@@ -2,18 +2,113 @@
 //
 
 #include <iostream>
+#include <string>
+using namespace std;
+
+class Building
+{
+protected:
+    string name;
+public:
+    Building() //Constructor default
+    {
+        name = "Edificio";
+    }
+    Building(string nombre) //Constructor
+    {
+        name = nombre;
+    }
+    const string getName() const //Funcion retorna el nombre
+    {
+        return name;
+    }
+};
+//Clase derivada de Building
+class Warehouse : public Building
+{
+private:
+    int wood;
+    int rocks;
+    int wheat;
+public:
+    Warehouse() //Constructor default
+    {
+        name = "Warehaouse1";
+        wood = 0;
+        rocks = 0;
+        wheat = 0;
+    }
+    Warehouse(string nombre, int madera, int piedra, int ww)
+        : Building(name), /*Constructor building*/ wood(madera), rocks(piedra), wheat(ww)
+    {
+    };
+    void printResources()
+    {
+        cout << "\nMATERIALES DISPONIBLES:\nNombre: " << getName() << "\nMadera: " << wood << "\nPiedra: " << rocks << "\nWheat: " << wheat << endl;
+    }
+
+};
+//Clase derivada de Warehouse
+class House : public Warehouse
+{
+private:
+    int pisos;
+    int miembros;
+    int sirvientes;
+public:
+    House() //Constructor default
+    {
+        name = "Casa1";
+        pisos = 0;
+        miembros = 0;
+        sirvientes = 0;
+    }
+    House(string nombre, int floors, int inhabitants, int servants)
+    {
+        Building(nombre);
+        pisos = floors;
+        miembros = inhabitants;
+        sirvientes = servants;
+    }
+    void printHouse()
+    {
+        cout << "\nINFORMACION MIEMBROS:\nNombre: " << getName << "\nPisos: " << pisos << "\nMiembros : " << miembros << "\nSirvientes : " << sirvientes << endl;
+    }
+};
+//Clase derivada de Building
+class Temple : public Building
+{
+private:
+    string members_god;
+    int priest;
+public:
+    Temple() //Constructor default
+    {
+        name = "Templo1";
+        members_god = "Nombre1";
+        priest = 2;
+    }
+    Temple(string nombre, string miembros, int sacerdotes)
+        : Building(name), members_god(miembros), priest(sacerdotes)
+    {
+    }
+    void printTemple()
+    {
+        cout << "\nINFORMACIÓN TEMPLO:\nNombre" << getName << "\nMiembros: " << members_god << "\nSacerdotes: " << priest << endl;
+    }
+};
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    //Darle valor a cada clase creada
+
+    //Clase Building
+    Building("Edificio A");
+
+    //Clase Warehouse
+    Warehouse("Warehouse B", 4, 7, 5);
+
+    //Clase House
+
+    //Clase Temple
 }
-
-// Ejecutar programa: Ctrl + F5 o menú Depurar > Iniciar sin depurar
-// Depurar programa: F5 o menú Depurar > Iniciar depuración
-
-// Sugerencias para primeros pasos: 1. Use la ventana del Explorador de soluciones para agregar y administrar archivos
-//   2. Use la ventana de Team Explorer para conectar con el control de código fuente
-//   3. Use la ventana de salida para ver la salida de compilación y otros mensajes
-//   4. Use la ventana Lista de errores para ver los errores
-//   5. Vaya a Proyecto > Agregar nuevo elemento para crear nuevos archivos de código, o a Proyecto > Agregar elemento existente para agregar archivos de código existentes al proyecto
-//   6. En el futuro, para volver a abrir este proyecto, vaya a Archivo > Abrir > Proyecto y seleccione el archivo .sln
